@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="theme-color" content="#020617">
+
+<link rel="manifest" href="manifest.json">
+
+<title>Trade Checklist</title>
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #020617;
+  color: #e5e7eb;
+  font-family: system-ui;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: #020617;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 0 35px rgba(0,0,0,0.6);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 28px;
+  letter-spacing: 1px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 22px 0;
+  font-size: 16px;
+}
+
+input {
+  transform: scale(1.8);
+}
+
+.result {
+  margin-top: 30px;
+  padding: 18px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  border-radius: 16px;
+}
+
+.green {
+  background: #166534;
+}
+
+.red {
+  background: #7f1d1d;
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+  <div class="card">
+    <h2>TRADE CHECKLIST</h2>
+
+    <div class="row">
+      <span>Support or Resistance</span>
+      <input type="checkbox">
+    </div>
+
+    <div class="row">
+      <span>2 Candle Breakout</span>
+      <input type="checkbox">
+    </div>
+
+    <div class="row">
+      <span>Close &gt; 60%</span>
+      <input type="checkbox">
+    </div>
+
+    <div id="result" class="result red">NO TRADE</div>
+  </div>
+</div>
+
+<script>
+const boxes = document.querySelectorAll("input");
+const result = document.getElementById("result");
+
+boxes.forEach(b => b.addEventListener("change", () => {
+  if ([...boxes].every(x => x.checked)) {
+    result.textContent = "TAKE TRADE";
+    result.className = "result green";
+    if (navigator.vibrate) navigator.vibrate(60);
+  } else {
+    result.textContent = "NO TRADE";
+    result.className = "result red";
+  }
+}));
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+</body>
+</html>
