@@ -1,20 +1,22 @@
 {
   "name": "Trade Checklist",
   "short_name": "Trade Check",
-  "start_url": ".",
+  "start_url": "/trade-checklist/index.html",
+  "scope": "/trade-checklist/",
   "display": "standalone",
   "background_color": "#020617",
   "theme_color": "#020617",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "/trade-checklist/icon.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icon.png",
+      "src": "/trade-checklist/icon.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ]
 }
+
